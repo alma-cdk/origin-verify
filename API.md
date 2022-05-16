@@ -90,7 +90,7 @@ Any object.
 | --- | --- | --- |
 | <code><a href="#@alma-cdk/origin-verify.OriginVerify.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
 | <code><a href="#@alma-cdk/origin-verify.OriginVerify.property.headerName">headerName</a></code> | <code>string</code> | CloudFront Origin Custom Header name used in the WAFv2 WebACL verification. |
-| <code><a href="#@alma-cdk/origin-verify.OriginVerify.property.secretValue">secretValue</a></code> | <code>aws-cdk-lib.SecretValue</code> | Secret Value used as the CloudFront Origin Custom Header value. |
+| <code><a href="#@alma-cdk/origin-verify.OriginVerify.property.headerValue">headerValue</a></code> | <code>string</code> | Secret Value used as the CloudFront Origin Custom Header value. |
 
 ---
 
@@ -119,24 +119,22 @@ CloudFront Origin Custom Header name used in the WAFv2 WebACL verification.
 
 ---
 
-##### `secretValue`<sup>Required</sup> <a name="secretValue" id="@alma-cdk/origin-verify.OriginVerify.property.secretValue"></a>
+##### `headerValue`<sup>Required</sup> <a name="headerValue" id="@alma-cdk/origin-verify.OriginVerify.property.headerValue"></a>
 
 ```typescript
-public readonly secretValue: SecretValue;
+public readonly headerValue: string;
 ```
 
-- *Type:* aws-cdk-lib.SecretValue
+- *Type:* string
 
 Secret Value used as the CloudFront Origin Custom Header value.
-
-Obtain the actual value with `toString()` method.
 
 ---
 
 *Example*
 
 ```typescript
-secretValue.toString()
+'xxxxEXAMPLESECRET'
 ```
 
 
@@ -287,7 +285,7 @@ Interface describing the "contract" of return values from the constructor.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@alma-cdk/origin-verify.IVerification.property.headerName">headerName</a></code> | <code>string</code> | CloudFront Origin Custom Header name used in the WAFv2 WebACL verification. |
-| <code><a href="#@alma-cdk/origin-verify.IVerification.property.secretValue">secretValue</a></code> | <code>aws-cdk-lib.SecretValue</code> | Secret Value used as the CloudFront Origin Custom Header value. |
+| <code><a href="#@alma-cdk/origin-verify.IVerification.property.headerValue">headerValue</a></code> | <code>string</code> | Secret Value used as the CloudFront Origin Custom Header value. |
 
 ---
 
@@ -304,24 +302,22 @@ CloudFront Origin Custom Header name used in the WAFv2 WebACL verification.
 
 ---
 
-##### `secretValue`<sup>Required</sup> <a name="secretValue" id="@alma-cdk/origin-verify.IVerification.property.secretValue"></a>
+##### `headerValue`<sup>Required</sup> <a name="headerValue" id="@alma-cdk/origin-verify.IVerification.property.headerValue"></a>
 
 ```typescript
-public readonly secretValue: SecretValue;
+public readonly headerValue: string;
 ```
 
-- *Type:* aws-cdk-lib.SecretValue
+- *Type:* string
 
 Secret Value used as the CloudFront Origin Custom Header value.
-
-Obtain the actual value with `toString()` method.
 
 ---
 
 *Example*
 
 ```typescript
-secretValue.toString()
+'xxxxEXAMPLESECRET'
 ```
 
 

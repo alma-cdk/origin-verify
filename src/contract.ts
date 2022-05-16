@@ -1,5 +1,3 @@
-import { ISecret } from 'aws-cdk-lib/aws-secretsmanager';
-
 /**
  * Interface describing the "contract" of return values from the constructor.
  */
@@ -15,10 +13,9 @@ export interface IVerification {
 
   /**
    * Secret Value used as the CloudFront Origin Custom Header value.
-   * Obtain the actual value with `toString()` method.
    *
    * @example
-   * secretValue.toString()
+   * 'xxxxEXAMPLESECRET'
    */
-  readonly secretValue: ISecret['secretValue'];
+  readonly headerValue: string;
 }

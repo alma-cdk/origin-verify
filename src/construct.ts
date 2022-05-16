@@ -27,12 +27,11 @@ export class OriginVerify extends Construct implements IVerification {
 
   /**
    * Secret Value used as the CloudFront Origin Custom Header value.
-   * Obtain the actual value with `toString()` method.
    *
    * @example
-   * secretValue.toString()
+   * 'xxxxEXAMPLESECRET'
    */
-  public readonly secretValue: ISecret['secretValue'];
+  public readonly headerValue: string;
 
   /**
    * Associates an origin with WAFv2 WebACL to verify traffic contains specific
@@ -65,11 +64,11 @@ export class OriginVerify extends Construct implements IVerification {
     const secret = this.resolveSecret(props.secret);
     const verifyHeader: IVerification = {
       headerName: props.headerName || OriginVerify.OriginVerifyHeader,
-      secretValue: secret.secretValue,
+      headerValue: secret.secretValue.unsafeUnwrap(),
     };
 
     this.headerName = verifyHeader.headerName;
-    this.secretValue = verifyHeader.secretValue;
+    this.headerValue = verifyHeader.headerValue;
 
     const acl = this.defineAcl(verifyHeader, props);
 
@@ -129,9 +128,9 @@ export class OriginVerify extends Construct implements IVerification {
             Name: header.headerName,
           },
         },
-        // Use of unsafeUnwrap allowed as we must be able to assign the secret 
+        // Use of unsafeUnwrap allowed as we must be able to assign the secret
         // value into WebACL rule (and that rule stays within AWS Account).
-        searchString: header.secretValue.unsafeUnwrap(),
+        searchString: header.headerValue,
         positionalConstraint: 'EXACTLY',
         textTransformations: [
           {
