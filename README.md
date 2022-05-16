@@ -23,7 +23,7 @@
 
 ## Work in Progress
 
-🚧 Do not use for production critial stuff. This construct is still very much work in progress and breaking changes may occur.
+🚧 &nbsp;**Do not use for production critial stuff! This construct is still very much work in progress and breaking changes may occur.** 🚧
 
 
 ## Getting Started
