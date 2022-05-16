@@ -4,7 +4,7 @@
 
 ### OriginVerify <a name="OriginVerify" id="@alma-cdk/origin-verify.OriginVerify"></a>
 
-- *Implements:* <a href="#@alma-cdk/origin-verify.IVerifyHeader">IVerifyHeader</a>
+- *Implements:* <a href="#@alma-cdk/origin-verify.IVerification">IVerification</a>
 
 Associates an origin with WAFv2 WebACL to verify traffic contains specific header with a secret value.
 
@@ -89,8 +89,8 @@ Any object.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@alma-cdk/origin-verify.OriginVerify.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#@alma-cdk/origin-verify.OriginVerify.property.headerName">headerName</a></code> | <code>string</code> | Values to configure into CloudFront origin custom headers. |
-| <code><a href="#@alma-cdk/origin-verify.OriginVerify.property.secretValue">secretValue</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
+| <code><a href="#@alma-cdk/origin-verify.OriginVerify.property.headerName">headerName</a></code> | <code>string</code> | CloudFront Origin Custom Header name used in the WAFv2 WebACL verification. |
+| <code><a href="#@alma-cdk/origin-verify.OriginVerify.property.secretValue">secretValue</a></code> | <code>aws-cdk-lib.SecretValue</code> | Secret Value used as the CloudFront Origin Custom Header value. |
 
 ---
 
@@ -113,8 +113,9 @@ public readonly headerName: string;
 ```
 
 - *Type:* string
+- *Default:* 'x-origin-verify'
 
-Values to configure into CloudFront origin custom headers.
+CloudFront Origin Custom Header name used in the WAFv2 WebACL verification.
 
 ---
 
@@ -126,7 +127,18 @@ public readonly secretValue: SecretValue;
 
 - *Type:* aws-cdk-lib.SecretValue
 
+Secret Value used as the CloudFront Origin Custom Header value.
+
+Obtain the actual value with `toString()` method.
+
 ---
+
+*Example*
+
+```typescript
+secretValue.toString()
+```
+
 
 #### Constants <a name="Constants" id="Constants"></a>
 
@@ -151,6 +163,8 @@ Origin Request Header Default Name.
 ## Structs <a name="Structs" id="Structs"></a>
 
 ### OriginVerifyProps <a name="OriginVerifyProps" id="@alma-cdk/origin-verify.OriginVerifyProps"></a>
+
+Properties for `OriginVerify` constructor.
 
 #### Initializer <a name="Initializer" id="@alma-cdk/origin-verify.OriginVerifyProps.Initializer"></a>
 
@@ -261,31 +275,36 @@ Optional: By default this construct will generate a `new Secret`.
 
 ## Protocols <a name="Protocols" id="Protocols"></a>
 
-### IVerifyHeader <a name="IVerifyHeader" id="@alma-cdk/origin-verify.IVerifyHeader"></a>
+### IVerification <a name="IVerification" id="@alma-cdk/origin-verify.IVerification"></a>
 
-- *Implemented By:* <a href="#@alma-cdk/origin-verify.OriginVerify">OriginVerify</a>, <a href="#@alma-cdk/origin-verify.IVerifyHeader">IVerifyHeader</a>
+- *Implemented By:* <a href="#@alma-cdk/origin-verify.OriginVerify">OriginVerify</a>, <a href="#@alma-cdk/origin-verify.IVerification">IVerification</a>
+
+Interface describing the "contract" of return values from the constructor.
 
 
 #### Properties <a name="Properties" id="Properties"></a>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@alma-cdk/origin-verify.IVerifyHeader.property.headerName">headerName</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@alma-cdk/origin-verify.IVerifyHeader.property.secretValue">secretValue</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
+| <code><a href="#@alma-cdk/origin-verify.IVerification.property.headerName">headerName</a></code> | <code>string</code> | CloudFront Origin Custom Header name used in the WAFv2 WebACL verification. |
+| <code><a href="#@alma-cdk/origin-verify.IVerification.property.secretValue">secretValue</a></code> | <code>aws-cdk-lib.SecretValue</code> | Secret Value used as the CloudFront Origin Custom Header value. |
 
 ---
 
-##### `headerName`<sup>Required</sup> <a name="headerName" id="@alma-cdk/origin-verify.IVerifyHeader.property.headerName"></a>
+##### `headerName`<sup>Required</sup> <a name="headerName" id="@alma-cdk/origin-verify.IVerification.property.headerName"></a>
 
 ```typescript
 public readonly headerName: string;
 ```
 
 - *Type:* string
+- *Default:* 'x-origin-verify'
+
+CloudFront Origin Custom Header name used in the WAFv2 WebACL verification.
 
 ---
 
-##### `secretValue`<sup>Required</sup> <a name="secretValue" id="@alma-cdk/origin-verify.IVerifyHeader.property.secretValue"></a>
+##### `secretValue`<sup>Required</sup> <a name="secretValue" id="@alma-cdk/origin-verify.IVerification.property.secretValue"></a>
 
 ```typescript
 public readonly secretValue: SecretValue;
@@ -293,5 +312,16 @@ public readonly secretValue: SecretValue;
 
 - *Type:* aws-cdk-lib.SecretValue
 
+Secret Value used as the CloudFront Origin Custom Header value.
+
+Obtain the actual value with `toString()` method.
+
 ---
+
+*Example*
+
+```typescript
+secretValue.toString()
+```
+
 
