@@ -43,16 +43,17 @@ export class OriginVerify extends Construct implements IVerification {
    * import { OriginVerify } from '@alma-cdk/origin-verify';
    * import { Distribution } from 'aws-cdk-lib/aws-cloudfront';
    *
-   * const api: IRestApi;
+   * const api: RestApi; // TODO: implement the RestApi
+   * const apiDomain: string; // TODO: implement the domain
    *
-   * const { verifyHeader } = new OriginVerify(this, 'OriginVerify', {
-   *   origin: api,
+   * const verification = new OriginVerify(this, 'OriginVerify', {
+   *   origin: api.deploymentStage,
    * });
    *
    * new Distribution(this, 'CDN', {
    *   defaultBehavior: { origin: new HttpOrigin(apiDomain, {
    *     customHeaders: {
-   *       [verifyHeader.name]: verifyHeader.value.toString(),
+   *       [verification.headerName]: verification.headerValue,
    *     },
    *   }) },
    * })
