@@ -24,6 +24,8 @@
 
 ![diagram](assets/diagram.svg)
 
+<br/>
+
 Essentially this is an implementation of _AWS Solution_ “[Enhance Amazon CloudFront Origin Security with AWS WAF and AWS Secrets Manager](https://aws.amazon.com/blogs/security/how-to-enhance-amazon-cloudfront-origin-security-with-aws-waf-and-aws-secrets-manager/)” without the secret rotation.
 
 <br/>
