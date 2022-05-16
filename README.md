@@ -59,5 +59,5 @@ new Distribution(this, 'CDN', {
 Internally this construct creates the `headerValue` by using AWS Secrets Manager but the secret value is exposed directly by using `secretValue.unsafeUnwrap()` method: This is:
 - **required**, because we must be able to set it into the WAFv2 WebACL rule
 - **required**, because you must be able to set it into the CloudFront Origin Custom Header
-- **okay**, because it's meant to protect the API externally and it's not considered as a secret that should be kept – well – secret within _your_ AWS account
+- **okay**, because it's meant to protect the API externally and it's _not_ considered as a secret that should be kept – well – secret within _your_ AWS account
 
