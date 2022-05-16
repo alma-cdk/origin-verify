@@ -14,12 +14,15 @@
   <div align="left">
 
 
-  Enforce API Gateway or Application Load Balancer traffic via CloudFront.
+  Enforce API Gateway or Application Load Balancer traffic via CloudFront by generating a Secrets Manager secret value which is used as a CloudFront Origin Custom header and a WAFv2 WebACL header match rule.
 
 
   </div>
   <br/>
 </div>
+
+
+![diagram](assets/diagram.svg)
 
 ## Work in Progress
 
