@@ -129,7 +129,9 @@ export class OriginVerify extends Construct implements IVerification {
             Name: header.headerName,
           },
         },
-        searchString: header.secretValue.toString(),
+        // Use of unsafeUnwrap allowed as we must be able to assign the secret 
+        // value into WebACL rule (and that rule stays within AWS Account).
+        searchString: header.secretValue.unsafeUnwrap(),
         positionalConstraint: 'EXACTLY',
         textTransformations: [
           {
