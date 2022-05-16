@@ -41,5 +41,7 @@ new TextFile(project, '.nvmrc', {
   lines: [nodejsVersion],
 });
 
+project.addPackageIgnore('/examples/');
+
 
 project.synth();
