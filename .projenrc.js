@@ -36,7 +36,8 @@ const project = new awscdk.AwsCdkConstructLibrary({
     '.DS_Store',
     '/examples/**/cdk.context.json',
     '/examples/**/node_modules',
-    '/examples/**/cdk.out'
+    '/examples/**/cdk.out',
+    '/examples/**/.git',
   ],
 
 
