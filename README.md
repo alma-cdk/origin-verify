@@ -40,7 +40,7 @@ import { Distribution } from 'aws-cdk-lib/aws-cloudfront';
 const api: IRestApi;
 
 const { verifyHeader } = new OriginVerify(this, 'OriginVerify', {
-  origin: api,
+  origin: api.deploymentStage,
 });
 
 new Distribution(this, 'CDN', {
