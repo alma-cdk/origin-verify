@@ -22,7 +22,7 @@
 </div>
 
 
-![diagram](assets/diagram.svg)
+![diagram](assets/diagram.svg?v=2)
 
 ## Work in Progress
 
