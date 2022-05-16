@@ -62,7 +62,7 @@ new Distribution(this, 'CDN', {
 })
 ```
 
-For more detailed example usage see [`/examples`](/examples) directory.
+For more detailed example usage see [`/examples`](https://github.com/alma-cdk/origin-verify/tree/main/examples/) directory.
 
 <br/>
 
