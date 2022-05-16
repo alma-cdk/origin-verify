@@ -36,9 +36,10 @@
 ```ts
 import { OriginVerify } from '@alma-cdk/origin-verify';
 import { Distribution } from 'aws-cdk-lib/aws-cloudfront';
-
-const api: RestApi; // TODO: actually define the RestApi
-const apiDomain: string = api.domainName; // TODO: actually define the domain
+```
+```ts
+const api: RestApi; // TODO: implement the RestApi
+const apiDomain: string; // TODO: implement the domain
 
 const verification = new OriginVerify(this, 'OriginVerify', {
   origin: api.deploymentStage,
