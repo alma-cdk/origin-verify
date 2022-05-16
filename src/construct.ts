@@ -51,11 +51,14 @@ export class OriginVerify extends Construct implements IVerification {
    * });
    *
    * new Distribution(this, 'CDN', {
-   *   defaultBehavior: { origin: new HttpOrigin(apiDomain, {
-   *     customHeaders: {
-   *       [verification.headerName]: verification.headerValue,
-   *     },
-   *   }) },
+   *   defaultBehavior: {
+   *     origin: new HttpOrigin(apiDomain, {
+   *       customHeaders: {
+   *         [verification.headerName]: verification.headerValue,
+   *       },
+   *       protocolPolicy: OriginProtocolPolicy.HTTPS_ONLY,
+   *     })
+   *   },
    * })
    */
   constructor(scope: Construct, id: string, props: OriginVerifyProps) {

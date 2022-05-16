@@ -51,11 +51,14 @@ const verification = new OriginVerify(this, 'OriginVerify', {
 });
 
 new Distribution(this, 'CDN', {
-  defaultBehavior: { origin: new HttpOrigin(apiDomain, {
-    customHeaders: {
-      [verification.headerName]: verification.headerValue,
-    },
-  }) },
+  defaultBehavior: {
+    origin: new HttpOrigin(apiDomain, {
+      customHeaders: {
+        [verification.headerName]: verification.headerValue,
+      },
+      protocolPolicy: OriginProtocolPolicy.HTTPS_ONLY,
+    })
+  },
 })
 ```
 
