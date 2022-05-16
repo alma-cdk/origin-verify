@@ -25,15 +25,15 @@
 
 Essentially this is an implementation of _AWS Solution_ “[Enhance Amazon CloudFront Origin Security with AWS WAF and AWS Secrets Manager](https://aws.amazon.com/blogs/security/how-to-enhance-amazon-cloudfront-origin-security-with-aws-waf-and-aws-secrets-manager/)” without the secret rotation.
 
+<br/>
 
 ## Work in Progress
 
 🚧 &nbsp;**Do not use for production critial stuff! This construct is still very much work in progress and breaking changes may occur.** 🚧
 
+<br/>
 
 ## Getting Started
-
-
 
 ```ts
 import { OriginVerify } from '@alma-cdk/origin-verify';
@@ -56,6 +56,9 @@ new Distribution(this, 'CDN', {
 })
 ```
 
+For more detailed example usage see [`/examples`](/examples) directory.
+
+<br/>
 
 ## Notes
 
