@@ -1,8 +1,7 @@
 import { IResolvable, Stack } from 'aws-cdk-lib';
-import { IStage } from 'aws-cdk-lib/aws-apigateway';;
+import { IStage } from 'aws-cdk-lib/aws-apigateway';
 import { IApplicationLoadBalancer } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import { Secret, ISecret } from 'aws-cdk-lib/aws-secretsmanager';
-
 import { CfnWebACL, CfnWebACLAssociation } from 'aws-cdk-lib/aws-wafv2';
 import { Construct } from 'constructs';
 import { addError } from './errors/add';
@@ -189,12 +188,22 @@ export class OriginVerify extends Construct {
     });
   }
 
+  /** Type guard for Application Load Balancer. */
+  private isAlb(origin: Origin): origin is IApplicationLoadBalancer {
+    return 'loadBalancerArn' in origin;
+  }
+
+  /** Type guard for API Gateway Stage. */
+  private isStage(origin: Origin): origin is IStage {
+    return 'stageName' in origin;
+  }
+
   /** Resolves origin (either IStage or IApplicationLoadBalancer) ARN. */
   private resolveOriginArn(origin: Origin): string {
-    if ('loadBalancerArn' in origin) {
+    if (this.isAlb(origin)) {
       return origin.loadBalancerArn;
     }
-    if ('stageName' in origin) {
+    if (this.isStage(origin)) {
       return this.resolveStageArn(origin);
     }
     addError(this, 'Invalid origin: Must be either IStage (API Gateway) or IApplicationLoadBalancer');
