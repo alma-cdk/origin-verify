@@ -12,7 +12,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   name: '@alma-cdk/origin-verify',
   description: 'Enforce API Gateway or Application Load Balancer traffic via CloudFront.',
   repositoryUrl: 'https://github.com/alma-cdk/origin-verify.git',
-  keywords: ['cdk', 'aws-cdk', 'awscdk', 'aws'],
+  keywords: ['cdk', 'aws-cdk', 'awscdk', 'aws', 'cloudfront', 'api-gateway', 'application-load-balancer'],
 
   // Publish configuration
   defaultReleaseBranch: 'main',

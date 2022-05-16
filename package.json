@@ -64,10 +64,13 @@
     "constructs": "^10.0.0"
   },
   "keywords": [
+    "api-gateway",
+    "application-load-balancer",
     "aws",
     "aws-cdk",
     "awscdk",
-    "cdk"
+    "cdk",
+    "cloudfront"
   ],
   "engines": {
     "node": ">= 14.17.6"
