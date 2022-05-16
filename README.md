@@ -65,6 +65,12 @@ For more detailed example usage see [`/examples`](/examples) directory.
 
 ## Notes
 
+### Use `OriginProtocolPolicy.HTTPS_ONLY`!
+
+In your CloudFront distribution Origin configuration use `OriginProtocolPolicy.HTTPS_ONLY` to avoid exposing the `verification.headerValue` secret to the world.
+
+### Why `secretValue.unsafeUnwrap()`?
+
 Internally this construct creates the `headerValue` by using AWS Secrets Manager but the secret value is exposed directly by using `secretValue.unsafeUnwrap()` method: This is:
 - **required**, because we must be able to set it into the WAFv2 WebACL rule
 - **required**, because you must be able to set it into the CloudFront Origin Custom Header
