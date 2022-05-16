@@ -32,7 +32,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   ],
 
   // Gitignore
-  gitignore: ['.DS_Store'],
+  gitignore: ['.DS_Store', '/examples/**/cdk.context.json'],
 
 
 });
