@@ -4,6 +4,8 @@
 
 ### OriginVerify <a name="OriginVerify" id="@alma-cdk/origin-verify.OriginVerify"></a>
 
+- *Implements:* <a href="#@alma-cdk/origin-verify.IVerifyHeader">IVerifyHeader</a>
+
 Associates an origin with WAFv2 WebACL to verify traffic contains specific header with a secret value.
 
 #### Initializers <a name="Initializers" id="@alma-cdk/origin-verify.OriginVerify.Initializer"></a>
@@ -87,7 +89,8 @@ Any object.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@alma-cdk/origin-verify.OriginVerify.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#@alma-cdk/origin-verify.OriginVerify.property.verifyHeader">verifyHeader</a></code> | <code><a href="#@alma-cdk/origin-verify.VerifyHeader">VerifyHeader</a></code> | Values to configure into CloudFront origin custom headers. |
+| <code><a href="#@alma-cdk/origin-verify.OriginVerify.property.headerName">headerName</a></code> | <code>string</code> | Values to configure into CloudFront origin custom headers. |
+| <code><a href="#@alma-cdk/origin-verify.OriginVerify.property.secretValue">secretValue</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 
 ---
 
@@ -103,15 +106,25 @@ The tree node.
 
 ---
 
-##### `verifyHeader`<sup>Required</sup> <a name="verifyHeader" id="@alma-cdk/origin-verify.OriginVerify.property.verifyHeader"></a>
+##### `headerName`<sup>Required</sup> <a name="headerName" id="@alma-cdk/origin-verify.OriginVerify.property.headerName"></a>
 
 ```typescript
-public readonly verifyHeader: VerifyHeader;
+public readonly headerName: string;
 ```
 
-- *Type:* <a href="#@alma-cdk/origin-verify.VerifyHeader">VerifyHeader</a>
+- *Type:* string
 
 Values to configure into CloudFront origin custom headers.
+
+---
+
+##### `secretValue`<sup>Required</sup> <a name="secretValue" id="@alma-cdk/origin-verify.OriginVerify.property.secretValue"></a>
+
+```typescript
+public readonly secretValue: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
@@ -245,44 +258,40 @@ Optional: By default this construct will generate a `new Secret`.
 
 ---
 
-### VerifyHeader <a name="VerifyHeader" id="@alma-cdk/origin-verify.VerifyHeader"></a>
 
-#### Initializer <a name="Initializer" id="@alma-cdk/origin-verify.VerifyHeader.Initializer"></a>
+## Protocols <a name="Protocols" id="Protocols"></a>
 
-```typescript
-import { VerifyHeader } from '@alma-cdk/origin-verify'
+### IVerifyHeader <a name="IVerifyHeader" id="@alma-cdk/origin-verify.IVerifyHeader"></a>
 
-const verifyHeader: VerifyHeader = { ... }
-```
+- *Implemented By:* <a href="#@alma-cdk/origin-verify.OriginVerify">OriginVerify</a>, <a href="#@alma-cdk/origin-verify.IVerifyHeader">IVerifyHeader</a>
+
 
 #### Properties <a name="Properties" id="Properties"></a>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@alma-cdk/origin-verify.VerifyHeader.property.name">name</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@alma-cdk/origin-verify.VerifyHeader.property.value">value</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@alma-cdk/origin-verify.IVerifyHeader.property.headerName">headerName</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@alma-cdk/origin-verify.IVerifyHeader.property.secretValue">secretValue</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 
 ---
 
-##### `name`<sup>Required</sup> <a name="name" id="@alma-cdk/origin-verify.VerifyHeader.property.name"></a>
+##### `headerName`<sup>Required</sup> <a name="headerName" id="@alma-cdk/origin-verify.IVerifyHeader.property.headerName"></a>
 
 ```typescript
-public readonly name: string;
+public readonly headerName: string;
 ```
 
 - *Type:* string
 
 ---
 
-##### `value`<sup>Required</sup> <a name="value" id="@alma-cdk/origin-verify.VerifyHeader.property.value"></a>
+##### `secretValue`<sup>Required</sup> <a name="secretValue" id="@alma-cdk/origin-verify.IVerifyHeader.property.secretValue"></a>
 
 ```typescript
-public readonly value: string;
+public readonly secretValue: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
-
-
 

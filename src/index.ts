@@ -59,22 +59,23 @@ export interface OriginVerifyProps {
   readonly rules?: (IResolvable | CfnWebACL.RuleProperty)[];
 }
 
-export interface VerifyHeader {
-  readonly name: string;
-  readonly value: string;
+export interface IVerifyHeader {
+  readonly headerName: string;
+  readonly secretValue: ISecret['secretValue'];
 }
 
 /**
  * Associates an origin with WAFv2 WebACL to verify traffic contains specific
  * header with a secret value.
  */
-export class OriginVerify extends Construct {
+export class OriginVerify extends Construct implements IVerifyHeader {
 
   /** Origin Request Header Default Name */
   static readonly OriginVerifyHeader = 'x-origin-verify';
 
   /** Values to configure into CloudFront origin custom headers. */
-  public readonly verifyHeader: VerifyHeader;
+  public readonly headerName: string;
+  public readonly secretValue: ISecret['secretValue'];
 
   /**
    * Associates an origin with WAFv2 WebACL to verify traffic contains specific
@@ -95,7 +96,7 @@ export class OriginVerify extends Construct {
    * new Distribution(this, 'CDN', {
    *   defaultBehavior: { origin: new HttpOrigin(apiDomain, {
    *     customHeaders: {
-   *       [verifyHeader.name]: verifyHeader.value,
+   *       [verifyHeader.name]: verifyHeader.value.toString(),
    *     },
    *   }) },
    * })
@@ -105,12 +106,15 @@ export class OriginVerify extends Construct {
 
     // Define the exposed header information
     const secret = this.resolveSecret(props.secret);
-    this.verifyHeader = {
-      name: props.headerName || OriginVerify.OriginVerifyHeader,
-      value: secret.secretValue.toString(),
+    const verifyHeader: IVerifyHeader = {
+      headerName: props.headerName || OriginVerify.OriginVerifyHeader,
+      secretValue: secret.secretValue,
     };
 
-    const acl = this.defineAcl(this.verifyHeader, props);
+    this.headerName = verifyHeader.headerName;
+    this.secretValue = verifyHeader.secretValue;
+
+    const acl = this.defineAcl(verifyHeader, props);
 
     this.associate(acl, this.resolveOriginArn(props.origin));
   }
@@ -124,7 +128,7 @@ export class OriginVerify extends Construct {
   }
 
   /** Define a new WAFv2 WebACL. */
-  private defineAcl(header: VerifyHeader, props: Pick<OriginVerifyProps, 'aclMetricName'|'ruleMetricName'|'rules' >): CfnWebACL {
+  private defineAcl(header: IVerifyHeader, props: Pick<OriginVerifyProps, 'aclMetricName'|'ruleMetricName'|'rules' >): CfnWebACL {
     return new CfnWebACL(this, 'WebACL', {
       defaultAction: {
         block: {},
@@ -143,7 +147,7 @@ export class OriginVerify extends Construct {
   }
 
   /** Allow traffic with specific header secret. */
-  private allowCloudFrontRequests(header: VerifyHeader, ruleMetricName?: string): CfnWebACL.RuleProperty {
+  private allowCloudFrontRequests(header: IVerifyHeader, ruleMetricName?: string): CfnWebACL.RuleProperty {
     return {
       name: 'AllowCloudFrontRequests',
       priority: 0,
@@ -160,15 +164,15 @@ export class OriginVerify extends Construct {
   }
 
   /** Define WAFv2 Statement matching specific header and its value. */
-  private allowVerifiedOrigin(header: VerifyHeader): CfnWebACL.StatementProperty {
+  private allowVerifiedOrigin(header: IVerifyHeader): CfnWebACL.StatementProperty {
     return {
       byteMatchStatement: {
         fieldToMatch: {
           singleHeader: {
-            Name: header.name,
+            Name: header.headerName,
           },
         },
-        searchString: header.value,
+        searchString: header.secretValue.toString(),
         positionalConstraint: 'EXACTLY',
         textTransformations: [
           {

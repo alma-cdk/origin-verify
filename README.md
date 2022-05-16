@@ -40,14 +40,14 @@ import { Distribution } from 'aws-cdk-lib/aws-cloudfront';
 const api: RestApi; // TODO: actually define the RestApi
 const apiDomain: string = api.domainName; // TODO: actually define the domain
 
-const { verifyHeader } = new OriginVerify(this, 'OriginVerify', {
+const verification = new OriginVerify(this, 'OriginVerify', {
   origin: api.deploymentStage,
 });
 
 new Distribution(this, 'CDN', {
   defaultBehavior: { origin: new HttpOrigin(apiDomain, {
     customHeaders: {
-      [verifyHeader.name]: verifyHeader.value,
+      [verification.headerName]: verification.secretValue.toString(),
     },
   }) },
 })
