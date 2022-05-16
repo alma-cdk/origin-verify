@@ -33,6 +33,7 @@ jspm_packages/
 .DS_Store
 /examples/**/cdk.context.json
 /examples/**/node_modules
+/examples/**/cdk.out
 !/.projenrc.js
 /test-reports/
 junit.xml
