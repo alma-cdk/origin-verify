@@ -1,7 +1,7 @@
-import { Stack } from 'aws-cdk-lib';
+import { SecretValue, Stack } from 'aws-cdk-lib';
 import { IStage } from 'aws-cdk-lib/aws-apigateway';
 import { IApplicationLoadBalancer } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
-import { Secret, ISecret } from 'aws-cdk-lib/aws-secretsmanager';
+import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 import { CfnWebACL, CfnWebACLAssociation } from 'aws-cdk-lib/aws-wafv2';
 import { Construct } from 'constructs';
 import { IVerification } from './contract';
@@ -65,10 +65,10 @@ export class OriginVerify extends Construct implements IVerification {
     super(scope, id);
 
     // Define the exposed header information
-    const secret = this.resolveSecret(props.secret);
+    const secretValue = this.resolveSecret(props.secretValue);
     const verifyHeader: IVerification = {
       headerName: props.headerName || OriginVerify.OriginVerifyHeader,
-      headerValue: secret.secretValue.unsafeUnwrap(),
+      headerValue: secretValue.unsafeUnwrap(),
     };
 
     this.headerName = verifyHeader.headerName;
@@ -80,11 +80,11 @@ export class OriginVerify extends Construct implements IVerification {
   }
 
   /** Generates a new Secrets Manager Secret if none provided via props. */
-  private resolveSecret(secret?: ISecret): ISecret {
+  private resolveSecret(secret?: SecretValue): SecretValue {
     if (typeof secret !== 'undefined') {
       return secret;
     }
-    return new Secret(this, 'OriginVerifySecret');;
+    return new Secret(this, 'OriginVerifySecret').secretValue;
   }
 
   /** Define a new WAFv2 WebACL. */

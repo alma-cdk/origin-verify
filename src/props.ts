@@ -1,7 +1,6 @@
-import { IResolvable } from 'aws-cdk-lib';
+import { IResolvable, SecretValue } from 'aws-cdk-lib';
 import { IStage } from 'aws-cdk-lib/aws-apigateway';
 import { IApplicationLoadBalancer } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
-import { ISecret } from 'aws-cdk-lib/aws-secretsmanager';
 import { CfnWebACL } from 'aws-cdk-lib/aws-wafv2';
 
 /**
@@ -31,9 +30,9 @@ export interface OriginVerifyProps {
    * Optional: By default this construct will generate a `new Secret`.
    *
    * @default
-   * new Secret()
+   * new Secret().secretValue
    **/
-  readonly secret?: ISecret;
+  readonly secretValue?: SecretValue;
 
   /**
    * By default `x-origin-verify` is used. To override it, provide a value for

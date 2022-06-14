@@ -181,7 +181,7 @@ const originVerifyProps: OriginVerifyProps = { ... }
 | <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.headerName">headerName</a></code> | <code>string</code> | By default `x-origin-verify` is used. |
 | <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.ruleMetricName">ruleMetricName</a></code> | <code>string</code> | Metric name for the allowed requests. |
 | <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.rules">rules</a></code> | <code>aws-cdk-lib.aws_wafv2.CfnWebACL.RuleProperty \| aws-cdk-lib.IResolvable[]</code> | Any additional rules to add into the created WAFv2 WebACL. |
-| <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.secret">secret</a></code> | <code>aws-cdk-lib.aws_secretsmanager.ISecret</code> | The secret which is used to verify the CloudFront distribution. |
+| <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.secretValue">secretValue</a></code> | <code>aws-cdk-lib.SecretValue</code> | The secret which is used to verify the CloudFront distribution. |
 
 ---
 
@@ -255,14 +255,14 @@ Any additional rules to add into the created WAFv2 WebACL.
 
 ---
 
-##### `secret`<sup>Optional</sup> <a name="secret" id="@alma-cdk/origin-verify.OriginVerifyProps.property.secret"></a>
+##### `secretValue`<sup>Optional</sup> <a name="secretValue" id="@alma-cdk/origin-verify.OriginVerifyProps.property.secretValue"></a>
 
 ```typescript
-public readonly secret: ISecret;
+public readonly secretValue: SecretValue;
 ```
 
-- *Type:* aws-cdk-lib.aws_secretsmanager.ISecret
-- *Default:* new Secret()
+- *Type:* aws-cdk-lib.SecretValue
+- *Default:* new Secret().secretValue
 
 The secret which is used to verify the CloudFront distribution.
 

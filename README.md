@@ -69,6 +69,22 @@ For more detailed example usage see [`/examples`](https://github.com/alma-cdk/or
 
 <br/>
 
+## Custom Secret Value
+
+Additionally, you may pass in custom `secretValue` if you don't want to use a generated secret (which you should use in most cases):
+
+```ts
+const myCustomValue = SecretValue.unsafePlainText('foobar');
+
+const verification = new OriginVerify(this, 'OriginVerify', {
+  origin: api.deploymentStage,
+  secretValue: myCustomValue,
+});
+```
+
+
+<br/>
+
 ## Notes
 
 ### Use `OriginProtocolPolicy.HTTPS_ONLY`!

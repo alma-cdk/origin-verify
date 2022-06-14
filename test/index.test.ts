@@ -1,4 +1,4 @@
-import { App, Stack } from 'aws-cdk-lib';
+import { App, SecretValue, Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { RestApi } from 'aws-cdk-lib/aws-apigateway';
 import { Vpc } from 'aws-cdk-lib/aws-ec2';
@@ -16,9 +16,11 @@ test('Allow ALB', () => {
     internetFacing: true,
   });
 
-  new OriginVerify(stack, 'OriginVerify', {
+  const verification = new OriginVerify(stack, 'OriginVerify', {
     origin: alb,
   });
+
+  expect(verification.headerName).toBe('x-origin-verify');
 
   const template = Template.fromStack(stack);
 
@@ -36,9 +38,11 @@ test('Allow Stage', () => {
   const api = new RestApi(stack, 'RestApi', {});
   api.root.addMethod('ANY');
 
-  new OriginVerify(stack, 'OriginVerify', {
+  const verification = new OriginVerify(stack, 'OriginVerify', {
     origin: api.deploymentStage,
   });
+
+  expect(verification.headerName).toBe('x-origin-verify');
 
   const template = Template.fromStack(stack);
 
@@ -48,3 +52,22 @@ test('Allow Stage', () => {
     },
   });
 });
+
+
+test('Allow Custom Secret Value', () => {
+  const app = new App();
+  const stack = new Stack(app);
+
+  const api = new RestApi(stack, 'RestApi', {});
+  api.root.addMethod('ANY');
+
+  const verification = new OriginVerify(stack, 'OriginVerify', {
+    origin: api.deploymentStage,
+    secretValue: SecretValue.unsafePlainText('foobar'),
+  });
+
+  expect(verification.headerName).toBe('x-origin-verify');
+  expect(verification.headerValue).toBe('foobar');
+
+});
+
