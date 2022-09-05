@@ -18,6 +18,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
   defaultReleaseBranch: 'main',
   packageManager: javascript.NodePackageManager.NPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
+  python: {
+    distName: 'alma-cdk.origin-verify',
+    module: 'alma_cdk.origin_verify',
+  },
 
   // Dependencies
   minNodeVersion: nodejsVersion,
