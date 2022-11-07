@@ -1,6 +1,7 @@
 import { App, SecretValue, Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { RestApi } from 'aws-cdk-lib/aws-apigateway';
+import { CfnGraphQLApi } from 'aws-cdk-lib/aws-appsync';
 import { Vpc } from 'aws-cdk-lib/aws-ec2';
 import { ApplicationLoadBalancer } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import { OriginVerify } from '../src/index';
@@ -40,6 +41,30 @@ test('Allow Stage', () => {
 
   const verification = new OriginVerify(stack, 'OriginVerify', {
     origin: api.deploymentStage,
+  });
+
+  expect(verification.headerName).toBe('x-origin-verify');
+
+  const template = Template.fromStack(stack);
+
+  template.hasResourceProperties('AWS::WAFv2::WebACL', {
+    DefaultAction: {
+      Block: {},
+    },
+  });
+});
+
+test('Allow AppSync', () => {
+  const app = new App();
+  const stack = new Stack(app);
+
+  const api = new CfnGraphQLApi(stack, 'GraphQLApi', {
+    name: 'test',
+    authenticationType: 'API_KEY',
+  });
+
+  const verification = new OriginVerify(stack, 'OriginVerify', {
+    origin: api,
   });
 
   expect(verification.headerName).toBe('x-origin-verify');
