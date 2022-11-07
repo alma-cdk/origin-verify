@@ -1,4 +1,4 @@
-const { awscdk, TextFile, javascript } = require('projen');
+const { awscdk, github, TextFile, javascript } = require('projen');
 
 const nodejsVersion = '14.17.6';
 
@@ -23,11 +23,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
     module: 'alma_cdk.origin_verify',
   },
   publishToGo: {
-    moduleName: 'github.com/alma-cdk/origin-verify/go',
+    moduleName: 'github.com/alma-cdk/origin-verify',
   },
-  // projenCredentials: {
 
-  // },
+  projenCredentials: github.GithubCredentials.fromPersonalAccessToken(),
 
   // Dependencies
   minNodeVersion: nodejsVersion,
