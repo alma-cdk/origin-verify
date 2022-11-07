@@ -14,7 +14,7 @@
   <div align="left">
 
 
-  Enforce API Gateway or Application Load Balancer traffic via CloudFront by generating a Secrets Manager secret value which is used as a CloudFront Origin Custom header and a WAFv2 WebACL header match rule.
+  Enforce API Gateway REST API, AppSync GraphQL API, or Application Load Balancer traffic via CloudFront by generating a Secrets Manager secret value which is used as a CloudFront Origin Custom header and a WAFv2 WebACL header match rule.
 
   </div>
   <br/>
