@@ -1,5 +1,6 @@
 import { SecretValue, Stack } from 'aws-cdk-lib';
 import { IStage } from 'aws-cdk-lib/aws-apigateway';
+import { CfnGraphQLApi } from 'aws-cdk-lib/aws-appsync';
 import { IApplicationLoadBalancer } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 import { CfnWebACL, CfnWebACLAssociation } from 'aws-cdk-lib/aws-wafv2';
@@ -164,6 +165,10 @@ export class OriginVerify extends Construct implements IVerification {
     return 'stageName' in origin;
   }
 
+  private isCfnGraphQLApi(origin: Origin): origin is CfnGraphQLApi {
+    return 'attrGraphQlUrl' in origin;
+  }
+
   /** Resolves origin (either IStage or IApplicationLoadBalancer) ARN. */
   private resolveOriginArn(origin: Origin): string {
     if (this.isAlb(origin)) {
@@ -172,7 +177,10 @@ export class OriginVerify extends Construct implements IVerification {
     if (this.isStage(origin)) {
       return this.resolveStageArn(origin);
     }
-    addError(this, 'Invalid origin: Must be either IStage (API Gateway) or IApplicationLoadBalancer');
+    if (this.isCfnGraphQLApi(origin)) {
+      return origin.attrArn;
+    }
+    addError(this, 'Invalid origin: Must be either Api Gateway IStage, IApplicationLoadBalancer or AppSync CfnGraphQLApi');
     return '';
   }
 

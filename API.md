@@ -176,7 +176,7 @@ const originVerifyProps: OriginVerifyProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.origin">origin</a></code> | <code>aws-cdk-lib.aws_apigateway.IStage \| aws-cdk-lib.aws_elasticloadbalancingv2.IApplicationLoadBalancer</code> | Origin to protect. |
+| <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.origin">origin</a></code> | <code>aws-cdk-lib.aws_apigateway.IStage \| aws-cdk-lib.aws_appsync.CfnGraphQLApi \| aws-cdk-lib.aws_elasticloadbalancingv2.IApplicationLoadBalancer</code> | Origin to protect. |
 | <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.aclMetricName">aclMetricName</a></code> | <code>string</code> | Metric name for the WebACL. |
 | <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.headerName">headerName</a></code> | <code>string</code> | By default `x-origin-verify` is used. |
 | <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.ruleMetricName">ruleMetricName</a></code> | <code>string</code> | Metric name for the allowed requests. |
@@ -188,10 +188,10 @@ const originVerifyProps: OriginVerifyProps = { ... }
 ##### `origin`<sup>Required</sup> <a name="origin" id="@alma-cdk/origin-verify.OriginVerifyProps.property.origin"></a>
 
 ```typescript
-public readonly origin: IStage | IApplicationLoadBalancer;
+public readonly origin: IStage | CfnGraphQLApi | IApplicationLoadBalancer;
 ```
 
-- *Type:* aws-cdk-lib.aws_apigateway.IStage | aws-cdk-lib.aws_elasticloadbalancingv2.IApplicationLoadBalancer
+- *Type:* aws-cdk-lib.aws_apigateway.IStage | aws-cdk-lib.aws_appsync.CfnGraphQLApi | aws-cdk-lib.aws_elasticloadbalancingv2.IApplicationLoadBalancer
 
 Origin to protect.
 
