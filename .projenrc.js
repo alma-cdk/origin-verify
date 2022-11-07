@@ -26,8 +26,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
     moduleName: 'github.com/alma-cdk/origin-verify-go',
   },
 
-  //projenCredentials: github.GithubCredentials.fromPersonalAccessToken(),
-
   // Dependencies
   minNodeVersion: nodejsVersion,
   cdkVersion: '2.24.1',
