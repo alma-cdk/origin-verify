@@ -10,7 +10,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   authorOrganization: true,
   authorAddress: 'opensource@almamedia.dev',
   name: '@alma-cdk/origin-verify',
-  description: 'Enforce API Gateway or Application Load Balancer traffic via CloudFront.',
+  description: 'Enforce origin traffic via CloudFront.',
   repositoryUrl: 'https://github.com/alma-cdk/origin-verify.git',
   keywords: ['cdk', 'aws-cdk', 'awscdk', 'aws', 'cloudfront', 'api-gateway', 'application-load-balancer'],
 
@@ -23,10 +23,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
     module: 'alma_cdk.origin_verify',
   },
   publishToGo: {
-    moduleName: 'github.com/alma-cdk/origin-verify',
+    moduleName: 'github.com/alma-cdk/origin-verify-go',
   },
 
-  projenCredentials: github.GithubCredentials.fromPersonalAccessToken(),
+  //projenCredentials: github.GithubCredentials.fromPersonalAccessToken(),
 
   // Dependencies
   minNodeVersion: nodejsVersion,

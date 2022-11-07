@@ -1,6 +1,6 @@
 {
   "name": "@alma-cdk/origin-verify",
-  "description": "Enforce API Gateway or Application Load Balancer traffic via CloudFront.",
+  "description": "Enforce origin traffic via CloudFront.",
   "repository": {
     "type": "git",
     "url": "https://github.com/alma-cdk/origin-verify.git"
@@ -132,7 +132,7 @@
         "module": "alma_cdk.origin_verify"
       },
       "go": {
-        "moduleName": "github.com/alma-cdk/origin-verify"
+        "moduleName": "github.com/alma-cdk/origin-verify-go"
       }
     },
     "tsc": {
