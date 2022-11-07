@@ -23,8 +23,11 @@ const project = new awscdk.AwsCdkConstructLibrary({
     module: 'alma_cdk.origin_verify',
   },
   publishToGo: {
-    moduleName: 'github.com/alma-cdk/origin-verify',
+    moduleName: 'github.com/alma-cdk/origin-verify/go',
   },
+  // projenCredentials: {
+
+  // },
 
   // Dependencies
   minNodeVersion: nodejsVersion,
