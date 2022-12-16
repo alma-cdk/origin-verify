@@ -14,7 +14,6 @@ import { Origin, OriginVerifyProps } from './props';
  * header with a secret value.
  */
 export class OriginVerify extends Construct implements IVerification {
-
   /** Origin Request Header Default Name */
   static readonly OriginVerifyHeader = 'x-origin-verify';
 
@@ -89,7 +88,10 @@ export class OriginVerify extends Construct implements IVerification {
   }
 
   /** Define a new WAFv2 WebACL. */
-  private defineAcl(header: IVerification, props: Pick<OriginVerifyProps, 'aclMetricName'|'ruleMetricName'|'rules' >): CfnWebACL {
+  private defineAcl(
+    header: IVerification,
+    props: Pick<OriginVerifyProps, 'aclMetricName' | 'ruleMetricName' | 'rules'>,
+  ): CfnWebACL {
     return new CfnWebACL(this, 'WebACL', {
       defaultAction: {
         block: {},
@@ -108,7 +110,10 @@ export class OriginVerify extends Construct implements IVerification {
   }
 
   /** Allow traffic with specific header secret. */
-  private allowCloudFrontRequests(header: IVerification, ruleMetricName?: string): CfnWebACL.RuleProperty {
+  private allowCloudFrontRequests(
+    header: IVerification,
+    ruleMetricName?: string,
+  ): CfnWebACL.RuleProperty {
     return {
       name: 'AllowCloudFrontRequests',
       priority: 0,
@@ -125,7 +130,9 @@ export class OriginVerify extends Construct implements IVerification {
   }
 
   /** Define WAFv2 Statement matching specific header and its value. */
-  private allowVerifiedOrigin(header: IVerification): CfnWebACL.StatementProperty {
+  private allowVerifiedOrigin(
+    header: IVerification,
+  ): CfnWebACL.StatementProperty {
     return {
       byteMatchStatement: {
         fieldToMatch: {
@@ -165,6 +172,7 @@ export class OriginVerify extends Construct implements IVerification {
     return 'stageName' in origin;
   }
 
+  //** Type guard for AppSync GraphQL API. */
   private isCfnGraphQLApi(origin: Origin): origin is CfnGraphQLApi {
     return 'attrGraphQlUrl' in origin;
   }
@@ -180,7 +188,10 @@ export class OriginVerify extends Construct implements IVerification {
     if (this.isCfnGraphQLApi(origin)) {
       return origin.attrArn;
     }
-    addError(this, 'Invalid origin: Must be either Api Gateway IStage, IApplicationLoadBalancer or AppSync CfnGraphQLApi');
+    addError(
+      this,
+      'Invalid origin: Must be either Api Gateway IStage, IApplicationLoadBalancer or AppSync CfnGraphQLApi',
+    );
     return '';
   }
 
@@ -191,6 +202,4 @@ export class OriginVerify extends Construct implements IVerification {
     const stageName = stage.stageName;
     return `arn:aws:apigateway:${region}::/restapis/${apiId}/stages/${stageName}`;
   }
-
 }
-
