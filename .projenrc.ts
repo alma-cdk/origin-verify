@@ -11,7 +11,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   repositoryUrl: 'https://github.com/alma-cdk/origin-verify.git',
   keywords: ['cdk', 'aws-cdk', 'awscdk', 'aws', 'cloudfront', 'api-gateway', 'application-load-balancer'],
   projenrcTs: true,
-  // jsiiVersion: '~5.3',
+  jsiiVersion: '~5.3.24',
   // Publish configuration
   defaultReleaseBranch: 'main',
   majorVersion: 0,
