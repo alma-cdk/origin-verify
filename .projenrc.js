@@ -62,6 +62,10 @@ new TextFile(project, '.nvmrc', {
   lines: [nodejsVersion],
 });
 
+new TextFile(project, '.python-version', {
+  lines: ['3.11.8'],
+});
+
 project.addPackageIgnore('/examples/');
 
 
