@@ -21,7 +21,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     beta: {
       majorVersion: 1,
       prerelease: 'beta',
-    }
+    },
   },
   packageManager: javascript.NodePackageManager.NPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
