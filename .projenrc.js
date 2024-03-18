@@ -16,12 +16,19 @@ const project = new awscdk.AwsCdkConstructLibrary({
 
   // Publish configuration
   defaultReleaseBranch: 'main',
+  majorVersion: 0,
+  releaseBranches: {
+    beta: {
+      majorVersion: 1,
+      prerelease: 'beta',
+    },
+  },
   packageManager: javascript.NodePackageManager.NPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
-  python: {
-    distName: 'alma-cdk.origin-verify',
-    module: 'alma_cdk.origin_verify',
-  },
+  //   python: {
+  //     distName: 'alma-cdk.origin-verify',
+  //     module: 'alma_cdk.origin_verify',
+  //   },
   publishToGo: {
     moduleName: 'github.com/alma-cdk/origin-verify-go',
   },
@@ -53,6 +60,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
 
 new TextFile(project, '.nvmrc', {
   lines: [nodejsVersion],
+});
+
+new TextFile(project, '.python-version', {
+  lines: ['3.11.8'],
 });
 
 project.addPackageIgnore('/examples/');
