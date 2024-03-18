@@ -16,6 +16,13 @@ const project = new awscdk.AwsCdkConstructLibrary({
 
   // Publish configuration
   defaultReleaseBranch: 'main',
+  majorVersion: 0,
+  releaseBranches: {
+    beta: {
+      majorVersion: 1,
+      prerelease: 'beta',
+    }
+  },
   packageManager: javascript.NodePackageManager.NPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
   python: {
