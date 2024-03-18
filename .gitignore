@@ -36,7 +36,6 @@ jspm_packages/
 /examples/**/cdk.out
 /examples/**/.git
 **/*.drawio.bkp
-!/.projenrc.js
 /test-reports/
 junit.xml
 /coverage/
@@ -57,3 +56,4 @@ junit.xml
 tsconfig.json
 !/API.md
 !/.nvmrc
+!/.projenrc.js

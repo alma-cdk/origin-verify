@@ -1,6 +1,6 @@
 const { awscdk, github, TextFile, javascript } = require('projen');
 
-const nodejsVersion = '14.17.6';
+const nodejsVersion = '18.19.1';
 
 const project = new awscdk.AwsCdkConstructLibrary({
 
