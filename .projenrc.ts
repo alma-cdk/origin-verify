@@ -20,14 +20,6 @@ const project = new AlmaCdkConstructLibrary({
     "application-load-balancer",
   ],
 
-  //   python: {
-  //     distName: 'alma-cdk.origin-verify',
-  //     module: 'alma_cdk.origin_verify',
-  //   },
-  // publishToGo: {
-  //   moduleName: 'github.com/alma-cdk/origin-verify-go',
-  // },
-
   devDeps: ["aws-cdk-lib", "constructs", "@alma-cdk/construct-library"],
   bundledDeps: [],
 });
