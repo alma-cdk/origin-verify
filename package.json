@@ -40,7 +40,7 @@
     "organization": true
   },
   "devDependencies": {
-    "@alma-cdk/construct-library": "^0.0.6",
+    "@alma-cdk/construct-library": "^0.0.7",
     "@types/jest": "^30",
     "@types/node": "^20",
     "@types/semver": "^7",

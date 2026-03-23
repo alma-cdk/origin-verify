@@ -6,7 +6,7 @@ minimumReleaseAgeExclude:
 trustPolicy: no-downgrade
 trustPolicyIgnoreAfter: 20160
 trustPolicyExclude:
-  - jsii@5.9.26
+  - jsii@5.9.33
 nodeLinker: hoisted
 resolutionMode: highest
 strictDepBuilds: true

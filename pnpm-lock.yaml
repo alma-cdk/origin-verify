@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  ajv@^8: ^8.18.0
+
 importers:
 
   .:
@@ -16,8 +19,8 @@ importers:
         version: 4.3.6
     devDependencies:
       '@alma-cdk/construct-library':
-        specifier: ^0.0.6
-        version: 0.0.6(constructs@10.3.0)(projen@0.99.21(constructs@10.3.0))
+        specifier: ^0.0.7
+        version: 0.0.7(constructs@10.3.0)(projen@0.99.21(constructs@10.3.0))
       '@types/jest':
         specifier: ^30
         version: 30.0.0
@@ -99,8 +102,8 @@ importers:
 
 packages:
 
-  '@alma-cdk/construct-library@0.0.6':
-    resolution: {integrity: sha512-lb3RhhKyFfEJBpdtePjTs7smq2ng74JVrYm8AYUymX/BTO8xQTNW8g2t9Hfsh4h0+SJ9Hf4RaRncd+M82EEm9w==}
+  '@alma-cdk/construct-library@0.0.7':
+    resolution: {integrity: sha512-F4g4PHCCFROgu8hUVYRv3gwRk9Cfj2kLKNMBXkXUn9s3sPyYf4nTIo3VrGlhykhg8qK2Rq9TRgT7VPIDabYRQA==}
     peerDependencies:
       constructs: ^10.0.0
       projen: ^0.99.21
@@ -3082,7 +3085,7 @@ packages:
 
 snapshots:
 
-  '@alma-cdk/construct-library@0.0.6(constructs@10.3.0)(projen@0.99.21(constructs@10.3.0))':
+  '@alma-cdk/construct-library@0.0.7(constructs@10.3.0)(projen@0.99.21(constructs@10.3.0))':
     dependencies:
       constructs: 10.3.0
       projen: 0.99.21(constructs@10.3.0)
