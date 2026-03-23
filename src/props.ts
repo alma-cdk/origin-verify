@@ -1,8 +1,8 @@
-import { IResolvable, SecretValue } from 'aws-cdk-lib';
-import { IStage } from 'aws-cdk-lib/aws-apigateway';
-import { CfnGraphQLApi } from 'aws-cdk-lib/aws-appsync';
-import { IApplicationLoadBalancer } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
-import { CfnWebACL } from 'aws-cdk-lib/aws-wafv2';
+import { IResolvable, SecretValue } from "aws-cdk-lib";
+import { IStage } from "aws-cdk-lib/aws-apigateway";
+import { CfnGraphQLApi } from "aws-cdk-lib/aws-appsync";
+import { IApplicationLoadBalancer } from "aws-cdk-lib/aws-elasticloadbalancingv2";
+import { CfnWebACL } from "aws-cdk-lib/aws-wafv2";
 
 /**
  * Origin to "protect" via WAFv2 WebACL request verification.
@@ -16,7 +16,6 @@ export type Origin = IStage | IApplicationLoadBalancer | CfnGraphQLApi;
  * Properties for `OriginVerify` constructor.
  */
 export interface OriginVerifyProps {
-
   /**
    * Origin to protect.
    *

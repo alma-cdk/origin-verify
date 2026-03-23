@@ -66,7 +66,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="@alma-cdk/origin-verify.OriginVerify.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="@alma-cdk/origin-verify.OriginVerify.isConstruct"></a>
 
 ```typescript
 import { OriginVerify } from '@alma-cdk/origin-verify'
@@ -75,6 +75,20 @@ OriginVerify.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@alma-cdk/origin-verify.OriginVerify.isConstruct.parameter.x"></a>
 
@@ -176,11 +190,11 @@ const originVerifyProps: OriginVerifyProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.origin">origin</a></code> | <code>aws-cdk-lib.aws_apigateway.IStage \| aws-cdk-lib.aws_appsync.CfnGraphQLApi \| aws-cdk-lib.aws_elasticloadbalancingv2.IApplicationLoadBalancer</code> | Origin to protect. |
+| <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.origin">origin</a></code> | <code>aws-cdk-lib.aws_apigateway.IStage \| aws-cdk-lib.aws_elasticloadbalancingv2.IApplicationLoadBalancer \| aws-cdk-lib.aws_appsync.CfnGraphQLApi</code> | Origin to protect. |
 | <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.aclMetricName">aclMetricName</a></code> | <code>string</code> | Metric name for the WebACL. |
 | <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.headerName">headerName</a></code> | <code>string</code> | By default `x-origin-verify` is used. |
 | <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.ruleMetricName">ruleMetricName</a></code> | <code>string</code> | Metric name for the allowed requests. |
-| <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.rules">rules</a></code> | <code>aws-cdk-lib.aws_wafv2.CfnWebACL.RuleProperty \| aws-cdk-lib.IResolvable[]</code> | Any additional rules to add into the created WAFv2 WebACL. |
+| <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.rules">rules</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_wafv2.CfnWebACL.RuleProperty[]</code> | Any additional rules to add into the created WAFv2 WebACL. |
 | <code><a href="#@alma-cdk/origin-verify.OriginVerifyProps.property.secretValue">secretValue</a></code> | <code>aws-cdk-lib.SecretValue</code> | The secret which is used to verify the CloudFront distribution. |
 
 ---
@@ -188,10 +202,10 @@ const originVerifyProps: OriginVerifyProps = { ... }
 ##### `origin`<sup>Required</sup> <a name="origin" id="@alma-cdk/origin-verify.OriginVerifyProps.property.origin"></a>
 
 ```typescript
-public readonly origin: IStage | CfnGraphQLApi | IApplicationLoadBalancer;
+public readonly origin: IStage | IApplicationLoadBalancer | CfnGraphQLApi;
 ```
 
-- *Type:* aws-cdk-lib.aws_apigateway.IStage | aws-cdk-lib.aws_appsync.CfnGraphQLApi | aws-cdk-lib.aws_elasticloadbalancingv2.IApplicationLoadBalancer
+- *Type:* aws-cdk-lib.aws_apigateway.IStage | aws-cdk-lib.aws_elasticloadbalancingv2.IApplicationLoadBalancer | aws-cdk-lib.aws_appsync.CfnGraphQLApi
 
 Origin to protect.
 
@@ -246,10 +260,10 @@ Metric name for the allowed requests.
 ##### `rules`<sup>Optional</sup> <a name="rules" id="@alma-cdk/origin-verify.OriginVerifyProps.property.rules"></a>
 
 ```typescript
-public readonly rules: RuleProperty | IResolvable[];
+public readonly rules: (IResolvable | RuleProperty)[];
 ```
 
-- *Type:* aws-cdk-lib.aws_wafv2.CfnWebACL.RuleProperty | aws-cdk-lib.IResolvable[]
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_wafv2.CfnWebACL.RuleProperty[]
 
 Any additional rules to add into the created WAFv2 WebACL.
 
