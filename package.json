@@ -39,7 +39,7 @@
     "organization": true
   },
   "devDependencies": {
-    "@alma-cdk/construct-library": "^0.0.10",
+    "@alma-cdk/construct-library": "^0.0.11",
     "@types/jest": "^30",
     "@types/node": "^20",
     "@types/semver": "^7",
@@ -90,7 +90,7 @@
     "cloudfront"
   ],
   "engines": {
-    "node": ">= 20.0.0 <= 24.14.0"
+    "node": ">= 20 <= 24"
   },
   "main": "lib/index.js",
   "license": "Apache-2.0",
