@@ -39,10 +39,9 @@
     "organization": true
   },
   "devDependencies": {
-    "@alma-cdk/construct-library": "^0.0.11",
+    "@alma-cdk/construct-library": "^0.0.13",
     "@types/jest": "^30",
     "@types/node": "^20",
-    "@types/semver": "^7",
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
     "aws-cdk-lib": "2.220.0",
@@ -60,7 +59,6 @@
     "jsii-docgen": "^10.5.0",
     "jsii-pacmak": "^1.70.0",
     "jsii-rosetta": "~5.9.0",
-    "json-schema-to-typescript": "^15",
     "prettier": "^3.8.1",
     "projen": "^0.99.21",
     "ts-jest": "^29",
@@ -71,14 +69,6 @@
     "aws-cdk-lib": "^2.220.0",
     "constructs": "^10.3.0"
   },
-  "dependencies": {
-    "semver": "7",
-    "zod": "4"
-  },
-  "bundledDependencies": [
-    "semver",
-    "zod"
-  ],
   "pnpm": {},
   "keywords": [
     "api-gateway",

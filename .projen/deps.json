@@ -15,11 +15,6 @@
       "type": "build"
     },
     {
-      "name": "@types/semver",
-      "version": "^7",
-      "type": "build"
-    },
-    {
       "name": "@typescript-eslint/eslint-plugin",
       "version": "^8",
       "type": "build"
@@ -93,11 +88,6 @@
       "type": "build"
     },
     {
-      "name": "json-schema-to-typescript",
-      "version": "^15",
-      "type": "build"
-    },
-    {
       "name": "prettier",
       "type": "build"
     },
@@ -118,16 +108,6 @@
       "name": "typescript",
       "version": "^5.9",
       "type": "build"
-    },
-    {
-      "name": "semver",
-      "version": "7",
-      "type": "bundled"
-    },
-    {
-      "name": "zod",
-      "version": "4",
-      "type": "bundled"
     },
     {
       "name": "aws-cdk-lib",
