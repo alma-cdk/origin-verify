@@ -198,7 +198,7 @@ export class OriginVerify extends Construct implements IVerification {
     return "";
   }
 
-  /** Formates API Gateway Stage ARN. */
+  /** Formats API Gateway Stage ARN. */
   private resolveStageArn(stage: IStage): string {
     const region = Stack.of(stage).region;
     const apiId = stage.restApi.restApiId;
