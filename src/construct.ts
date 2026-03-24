@@ -175,7 +175,7 @@ export class OriginVerify extends Construct implements IVerification {
     return "stageName" in origin;
   }
 
-  //** Type guard for AppSync GraphQL API. */
+  /** Type guard for AppSync GraphQL API. */
   private isCfnGraphQLApi(origin: Origin): origin is CfnGraphQLApi {
     return "attrGraphQlUrl" in origin;
   }
