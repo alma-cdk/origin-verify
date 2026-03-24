@@ -16,7 +16,6 @@
     "eject": "pnpm exec projen eject",
     "eslint": "pnpm exec projen eslint",
     "format": "pnpm exec projen format",
-    "generate:pnpm-workspace-types": "pnpm exec projen generate:pnpm-workspace-types",
     "package": "pnpm exec projen package",
     "package-all": "pnpm exec projen package-all",
     "package:go": "pnpm exec projen package:go",
@@ -40,7 +39,7 @@
     "organization": true
   },
   "devDependencies": {
-    "@alma-cdk/construct-library": "^0.0.9",
+    "@alma-cdk/construct-library": "^0.0.10",
     "@types/jest": "^30",
     "@types/node": "^20",
     "@types/semver": "^7",

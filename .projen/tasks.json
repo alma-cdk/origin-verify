@@ -144,15 +144,6 @@
         }
       ]
     },
-    "generate:pnpm-workspace-types": {
-      "name": "generate:pnpm-workspace-types",
-      "description": "Download pnpm-workspace JSON schema and generate pnpm-workspace-schema.d.ts",
-      "steps": [
-        {
-          "exec": "ts-node scripts/generate-pnpm-workspace-types.ts"
-        }
-      ]
-    },
     "install": {
       "name": "install",
       "description": "Install project dependencies and update lockfile (non-frozen)",
