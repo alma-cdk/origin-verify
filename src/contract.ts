@@ -2,7 +2,6 @@
  * Interface describing the "contract" of return values from the constructor.
  */
 export interface IVerification {
-
   /**
    * CloudFront Origin Custom Header name used in the WAFv2 WebACL verification.
    *

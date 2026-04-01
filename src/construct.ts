@@ -1,13 +1,13 @@
-import { SecretValue, Stack } from 'aws-cdk-lib';
-import { IStage } from 'aws-cdk-lib/aws-apigateway';
-import { CfnGraphQLApi } from 'aws-cdk-lib/aws-appsync';
-import { IApplicationLoadBalancer } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
-import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
-import { CfnWebACL, CfnWebACLAssociation } from 'aws-cdk-lib/aws-wafv2';
-import { Construct } from 'constructs';
-import { IVerification } from './contract';
-import { addError } from './errors/add';
-import { Origin, OriginVerifyProps } from './props';
+import { SecretValue, Stack } from "aws-cdk-lib";
+import { IStage } from "aws-cdk-lib/aws-apigateway";
+import { CfnGraphQLApi } from "aws-cdk-lib/aws-appsync";
+import { IApplicationLoadBalancer } from "aws-cdk-lib/aws-elasticloadbalancingv2";
+import { Secret } from "aws-cdk-lib/aws-secretsmanager";
+import { CfnWebACL, CfnWebACLAssociation } from "aws-cdk-lib/aws-wafv2";
+import { Construct } from "constructs";
+import { IVerification } from "./contract";
+import { addError } from "./errors/add";
+import { Origin, OriginVerifyProps } from "./props";
 
 /**
  * Associates an origin with WAFv2 WebACL to verify traffic contains specific
@@ -15,7 +15,7 @@ import { Origin, OriginVerifyProps } from './props';
  */
 export class OriginVerify extends Construct implements IVerification {
   /** Origin Request Header Default Name */
-  static readonly OriginVerifyHeader = 'x-origin-verify';
+  static readonly OriginVerifyHeader = "x-origin-verify";
 
   /**
    * CloudFront Origin Custom Header name used in the WAFv2 WebACL verification.
@@ -81,25 +81,28 @@ export class OriginVerify extends Construct implements IVerification {
 
   /** Generates a new Secrets Manager Secret if none provided via props. */
   private resolveSecret(secret?: SecretValue): SecretValue {
-    if (typeof secret !== 'undefined') {
+    if (typeof secret !== "undefined") {
       return secret;
     }
-    return new Secret(this, 'OriginVerifySecret').secretValue;
+    return new Secret(this, "OriginVerifySecret").secretValue;
   }
 
   /** Define a new WAFv2 WebACL. */
   private defineAcl(
     header: IVerification,
-    props: Pick<OriginVerifyProps, 'aclMetricName' | 'ruleMetricName' | 'rules'>,
+    props: Pick<
+      OriginVerifyProps,
+      "aclMetricName" | "ruleMetricName" | "rules"
+    >,
   ): CfnWebACL {
-    return new CfnWebACL(this, 'WebACL', {
+    return new CfnWebACL(this, "WebACL", {
       defaultAction: {
         block: {},
       },
-      scope: 'REGIONAL',
+      scope: "REGIONAL",
       visibilityConfig: {
         cloudWatchMetricsEnabled: true, // TODO should it be configurable?
-        metricName: props.aclMetricName || 'OriginVerifyWebAcl', // TODO can these clash?
+        metricName: props.aclMetricName || "OriginVerifyWebAcl", // TODO can these clash?
         sampledRequestsEnabled: true, // TODO should it be configurable?
       },
       rules: [
@@ -115,11 +118,11 @@ export class OriginVerify extends Construct implements IVerification {
     ruleMetricName?: string,
   ): CfnWebACL.RuleProperty {
     return {
-      name: 'AllowCloudFrontRequests',
+      name: "AllowCloudFrontRequests",
       priority: 0,
       visibilityConfig: {
         cloudWatchMetricsEnabled: false, // TODO ??
-        metricName: ruleMetricName || 'OriginVerifyAllowedRequests', // TODO can these clash?
+        metricName: ruleMetricName || "OriginVerifyAllowedRequests", // TODO can these clash?
         sampledRequestsEnabled: false, // TODO ??
       },
       action: {
@@ -143,11 +146,11 @@ export class OriginVerify extends Construct implements IVerification {
         // Use of unsafeUnwrap allowed as we must be able to assign the secret
         // value into WebACL rule (and that rule stays within AWS Account).
         searchString: header.headerValue,
-        positionalConstraint: 'EXACTLY',
+        positionalConstraint: "EXACTLY",
         textTransformations: [
           {
             priority: 0,
-            type: 'NONE',
+            type: "NONE",
           },
         ],
       },
@@ -156,7 +159,7 @@ export class OriginVerify extends Construct implements IVerification {
 
   /** Associates a WAFv2 WebACL into an AWS Resource (defined by ARN). */
   private associate(acl: CfnWebACL, arn: string): void {
-    new CfnWebACLAssociation(this, 'WebACLAssociation', {
+    new CfnWebACLAssociation(this, "WebACLAssociation", {
       webAclArn: acl.attrArn,
       resourceArn: arn,
     });
@@ -164,17 +167,17 @@ export class OriginVerify extends Construct implements IVerification {
 
   /** Type guard for Application Load Balancer. */
   private isAlb(origin: Origin): origin is IApplicationLoadBalancer {
-    return 'loadBalancerArn' in origin;
+    return "loadBalancerArn" in origin;
   }
 
   /** Type guard for API Gateway Stage. */
   private isStage(origin: Origin): origin is IStage {
-    return 'stageName' in origin;
+    return "stageName" in origin;
   }
 
-  //** Type guard for AppSync GraphQL API. */
+  /** Type guard for AppSync GraphQL API. */
   private isCfnGraphQLApi(origin: Origin): origin is CfnGraphQLApi {
-    return 'attrGraphQlUrl' in origin;
+    return "attrGraphQlUrl" in origin;
   }
 
   /** Resolves origin (either IStage or IApplicationLoadBalancer) ARN. */
@@ -190,12 +193,12 @@ export class OriginVerify extends Construct implements IVerification {
     }
     addError(
       this,
-      'Invalid origin: Must be either Api Gateway IStage, IApplicationLoadBalancer or AppSync CfnGraphQLApi',
+      "Invalid origin: Must be either Api Gateway IStage, IApplicationLoadBalancer or AppSync CfnGraphQLApi",
     );
-    return '';
+    return "";
   }
 
-  /** Formates API Gateway Stage ARN. */
+  /** Formats API Gateway Stage ARN. */
   private resolveStageArn(stage: IStage): string {
     const region = Stack.of(stage).region;
     const apiId = stage.restApi.restApiId;
