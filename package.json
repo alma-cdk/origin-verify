@@ -41,7 +41,7 @@
     "organization": true
   },
   "devDependencies": {
-    "@alma-cdk/construct-library": "^2.0.0",
+    "@alma-cdk/construct-library": "^2.1.0",
     "@types/jest": "^30",
     "@types/node": "^22",
     "@typescript-eslint/eslint-plugin": "^8",
@@ -88,7 +88,7 @@
     "packageManager": {
       "name": "pnpm",
       "version": "11.19.0",
-      "onFail": "ignore"
+      "onFail": "warn"
     }
   },
   "main": "lib/index.js",
