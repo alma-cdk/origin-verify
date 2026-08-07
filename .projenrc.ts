@@ -22,6 +22,12 @@ const project = new AlmaCdkConstructLibrary({
 
   devDeps: ["aws-cdk-lib", "constructs", "@alma-cdk/construct-library"],
   bundledDeps: [],
+  releaseBranches: {
+    "3.x": {
+      majorVersion: 2,
+      prerelease: "beta",
+    }
+  },
 });
 
 project.addPackageIgnore("/examples/");
