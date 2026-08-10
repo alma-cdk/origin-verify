@@ -11,7 +11,7 @@ const project = new AlmaCdkConstructLibrary({
   description: "Enforce origin traffic via CloudFront.",
   repositoryUrl: "https://github.com/alma-cdk/origin-verify.git",
   stability: cdk.Stability.EXPERIMENTAL,
-  majorVersion: 1,
+  majorVersion: MAJOR_VERSION,
   releaseEnvironment: "production",
   keywords: [
     "cdk",
