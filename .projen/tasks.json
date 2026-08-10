@@ -321,7 +321,7 @@
       "description": "Prepare a release from \"3.x\" branch",
       "env": {
         "RELEASE": "true",
-        "MAJOR": "2",
+        "MAJOR": "3",
         "PRERELEASE": "beta"
       },
       "steps": [
