@@ -29,6 +29,7 @@ const project = new AlmaCdkConstructLibrary({
     [`${NEXT_MAJOR_VERSION}.x`]: {
       majorVersion: NEXT_MAJOR_VERSION,
       prerelease: "beta",
+      npmDistTag: "beta",
     },
   },
 });
